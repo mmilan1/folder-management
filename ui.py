@@ -15,16 +15,20 @@ displayPath = Text(window, height=10)
 
 #openDirPath() -> open file browsing dialog when open path button is clicked
 
-def openDirPath():
+def openDir():
     selectedDir = filedialog.askdirectory()
     #print("Selected directory is:", selectedDir)
     outputStr = "The selected directory is: " + selectedDir
-    text = Label(window, width=120, borderwidth=2, text=outputStr, anchor=CENTER, wraplength=250)
-    text.pack(pady=120)
+    
+    textBlock = Text(window, height=1, width=120 )
+    textBlock.insert(END, outputStr)
+
+    textBlock.pack(pady=150)
+
 
 # button layout created
 
-mainButton = Button(window, text='Open Path', width=30, justify='left', command=openDirPath)
+mainButton = Button(window, text='Open Path', width=30, justify='left', command=openDir)
 mainButton.pack()
 mainButton.place(x=140, y=70)
 
