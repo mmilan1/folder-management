@@ -2,14 +2,14 @@
 # ui.py - Basic UI for managing files
 #
 
-import tkinter
+from tkinter import * 
 from tkinter import filedialog
 
-window = tkinter.Tk()
+window = Tk()
 window.title("File Management")
-window.geometry("400x350")
+window.geometry("500x350")
 
-displayPath = tkinter.Text(window, height=10)
+displayPath = Text(window, height=10)
 #displayPath.grid(column=0, row=0, sticky='nsew')
 
 
@@ -17,12 +17,16 @@ displayPath = tkinter.Text(window, height=10)
 
 def openDirPath():
     selectedDir = filedialog.askdirectory()
+    #print("Selected directory is:", selectedDir)
+    outputStr = "The selected directory is: " + selectedDir
+    text = Label(window, width=120, borderwidth=2, text=outputStr, anchor=CENTER, wraplength=250)
+    text.pack(pady=120)
 
 # button layout created
 
-mainButton = tkinter.Button(window, text='Open Path', width=30, justify='left', command=openDirPath)
+mainButton = Button(window, text='Open Path', width=30, justify='left', command=openDirPath)
 mainButton.pack()
-mainButton.place(x=90, y=70)
+mainButton.place(x=140, y=70)
 
 
 window.mainloop()
