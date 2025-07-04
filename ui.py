@@ -24,18 +24,17 @@ class myApp():
         #print("Selected directory is:", selectedDir)
         self.outputStr = "The selected directory is: " + self.selectedDir
         
-        self.textBlock = Text(self.window, height=1, width=120 )
-        self.textBlock.insert(END, "NO DIRECTORY SELECTED")
+        self.textBlock = Text(self.window, height=1, width=120)
+        #self.textBlock.insert(END, "NO DIRECTORY SELECTED")
 
         self.textBlock.pack(pady=150)
 
         return self.outputStr
 
-
     def updateDir(self):
-        
+        text = self.openDir()
         self.textBlock.delete(1.0, END)
-        self.textBlock.insert(END, self.openDir())
+        self.textBlock.insert(END, text)
         
     # button layout created
     def button(self):
@@ -45,3 +44,9 @@ class myApp():
 
     def startApp(self):
         self.window.mainloop()
+
+
+if __name__ == "__main__":
+    m = myApp()
+    m.button()
+    m.startApp()
