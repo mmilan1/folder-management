@@ -20,15 +20,22 @@ def openDir():
     #print("Selected directory is:", selectedDir)
     outputStr = "The selected directory is: " + selectedDir
     
-    textBlock = Text(window, height=1, width=120 )
-    textBlock.insert(END, outputStr)
+    return outputStr
 
-    textBlock.pack(pady=150)
+textBlock = Text(window, height=1, width=120 )
+textBlock.insert(END, "NO DIRECTORY SELECTED")
 
+textBlock.pack(pady=150)
+
+def updateDir():
+    
+    textBlock.delete(1.0, END)
+    textBlock.insert(END, openDir())
+    
 
 # button layout created
 
-mainButton = Button(window, text='Open Path', width=30, justify='left', command=openDir)
+mainButton = Button(window, text='Open Path', width=30, justify='left', command=updateDir)
 mainButton.pack()
 mainButton.place(x=140, y=70)
 
