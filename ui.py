@@ -15,7 +15,8 @@ class myApp():
 
         self.selectedDir = None
         self.outputStr = None
-        self.textBlock = None
+        self.textBlock = Text(self.window, height=1, width=120)
+
 
     #openDirPath() -> open file browsing dialog when open path button is clicked
 
@@ -24,8 +25,8 @@ class myApp():
         #print("Selected directory is:", selectedDir)
         self.outputStr = "The selected directory is: " + self.selectedDir
         
-        self.textBlock = Text(self.window, height=1, width=120)
-        #self.textBlock.insert(END, "NO DIRECTORY SELECTED")
+        #self.textBlock = Text(self.window, height=1, width=120)
+        self.textBlock.insert('1.0', self.outputStr)
 
         self.textBlock.pack(pady=150)
 
@@ -33,8 +34,8 @@ class myApp():
 
     def updateDir(self):
         text = self.openDir()
-        self.textBlock.delete(1.0, END)
-        self.textBlock.insert(END, text)
+        self.textBlock.delete('1.0', END)
+        self.textBlock.insert('1.0', text)
         
     # button layout created
     def button(self):
@@ -50,3 +51,4 @@ if __name__ == "__main__":
     m = myApp()
     m.button()
     m.startApp()
+    print("dir:", m.selectedDir)
