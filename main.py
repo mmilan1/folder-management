@@ -1,5 +1,5 @@
 #
-# main.py - controls the backend of the program
+# main.py - controls the backend of the file management program
 #
 
 from tkinter import * 
@@ -32,12 +32,13 @@ class myApp():
 
         return self.outputStr
 
+    # updateDir() - called when user clicks button and updates chosen path using openDir()
     def updateDir(self):
         text = self.openDir()
         self.textBlock.delete('1.0', END)
         self.textBlock.insert('1.0', text)
         
-    # button layout created
+    # main button - browse for directory path
     def button(self):
         mainButton = Button(self.window, text='Open Path', width=30, justify='left', command=self.updateDir)
         mainButton.pack()
