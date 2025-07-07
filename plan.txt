@@ -1,11 +1,15 @@
 - Create simple ui using tkinter
     * Open box dialog ✅
     * Browsing option to select path/other method ✅
-    * Option to enter name of folder and sub-folders
+        + Option to browse path continously while program is running ✅
     * Stop program or close button ✅
 
-- Design the code to navigate to specified path - OS module?
+- Design the code to navigate to specified path - OS module? 🚮
 
-- Code option to create folder and sub-folders
-    * Option to name folders individually or in a pattern
+
+- Code option to create folder and sub-folders (OS module)
+    * Ask for number of folders
+    * Ask for number of sub-folders
+    * Option to name folders and sub-folders individually or in a pattern
+    * Option to remove folders 
 
