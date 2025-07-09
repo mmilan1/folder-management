@@ -8,8 +8,9 @@
 
 
 - Code option to create folder and sub-folders (OS module)
-    * Ask for number of folders
-    * Ask for number of sub-folders
+    * Dropdown menu
+        + Ask for number of parent folders
+        + Ask for number of sub-folders
     * Option to name folders and sub-folders individually or in a pattern
     * Option to remove folders 
 
