@@ -31,7 +31,7 @@ class myApp():
         #self.textBlock = Text(self.window, height=1, width=120)
         self.textBlock.insert('1.0', self.outputStr)
 
-        self.textBlock.pack(pady=20)
+        self.textBlock.place(y=85)
 
         return self.outputStr
 
@@ -44,22 +44,21 @@ class myApp():
     # main button - browse for directory path
     def button(self):
         mainButton = Button(self.window, text='Open Path', width=20, justify='center', command=self.updateDir)
-        mainButton.pack(pady=50)
+        mainButton.place(x=175, y=30)
         #mainButton.place(x=140, y=70)
 
     def createParentFolder(self):
         
-        label1 = Label(self.window, text="Enter parent folder name", justify="left")
-        label1.pack()
+        label1 = Label(self.window, text="Enter parent folder name:", justify="left")
+        label1.place(x=30, y=122.5)
         parentButton = Entry(self.window, width=20)
-        parentButton.pack()
+        parentButton.place(x=189, y=125)
 
         
-
     def dropDownMenu(self):
         
         self.dropDown.set("How many sub-folders?")
-        self.dropDown.pack(pady=100)
+        self.dropDown.place(x=160, y=180)
 
     def startApp(self):
         self.window.mainloop()
@@ -69,6 +68,6 @@ if __name__ == "__main__":
     m = myApp()
     m.button()
     m.createParentFolder()
-    #m.dropDownMenu()
+    m.dropDownMenu()
     m.startApp()
     print("dir:", m.selectedDir)
