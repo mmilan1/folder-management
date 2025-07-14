@@ -4,6 +4,7 @@
 
 from tkinter import * 
 from tkinter import filedialog
+from tkinter import ttk
 
 class myApp():
     
@@ -17,6 +18,8 @@ class myApp():
         self.outputStr = None
         self.textBlock = Text(self.window, height=1, width=120)
 
+        self.dropDown = ttk.Combobox(self.window, values=[1, 2, 3, 4], width=25)
+
 
     #openDirPath() -> open file browsing dialog when open path button is clicked
 
@@ -28,7 +31,7 @@ class myApp():
         #self.textBlock = Text(self.window, height=1, width=120)
         self.textBlock.insert('1.0', self.outputStr)
 
-        self.textBlock.pack(pady=150)
+        self.textBlock.place(y=85)
 
         return self.outputStr
 
@@ -40,9 +43,22 @@ class myApp():
         
     # main button - browse for directory path
     def button(self):
-        mainButton = Button(self.window, text='Open Path', width=30, justify='left', command=self.updateDir)
-        mainButton.pack()
-        mainButton.place(x=140, y=70)
+        mainButton = Button(self.window, text='Open Path', width=20, justify='center', command=self.updateDir)
+        mainButton.place(x=175, y=30)
+        #mainButton.place(x=140, y=70)
+
+    def createParentFolder(self):
+        
+        label1 = Label(self.window, text="Enter parent folder name:", justify="left")
+        label1.place(x=30, y=122.5)
+        parentButton = Entry(self.window, width=20)
+        parentButton.place(x=189, y=125)
+
+        
+    def dropDownMenu(self):
+        
+        self.dropDown.set("How many sub-folders?")
+        self.dropDown.place(x=160, y=180)
 
     def startApp(self):
         self.window.mainloop()
@@ -51,5 +67,7 @@ class myApp():
 if __name__ == "__main__":
     m = myApp()
     m.button()
+    m.createParentFolder()
+    m.dropDownMenu()
     m.startApp()
     print("dir:", m.selectedDir)
