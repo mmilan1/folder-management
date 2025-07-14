@@ -1,4 +1,4 @@
-# Folder Management
+# 📁 Folder Management
 
-A basic app to create directories and sub-directories with ease.<br><br>
-Mainly intended for setting up folders for each unit during the uni semester, avoiding the hassle of constantly creating folders manually.
+A basic Python app to create Windows directories and sub-directories quickly and easily.<br><br>
+Mainly intended for setting up folders for each unit at the start of the uni semester, avoiding the hassle of manually creating folders.
