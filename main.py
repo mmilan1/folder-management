@@ -5,6 +5,8 @@
 from tkinter import * 
 from tkinter import filedialog
 from tkinter import ttk
+import os
+import time
 
 class myApp():
     
@@ -14,19 +16,30 @@ class myApp():
         self.window.title("File Management")
         self.window.geometry("500x350")
 
-        self.selectedDir = None
+        self.askDir = None
+        self.selectedDir = ""
         self.outputStr = None
         self.textBlock = Text(self.window, height=1, width=120)
 
+        self.parentFldrOutput = StringVar()
+        self.parentFldrOutput.set("")
+        self.parentFldrEntry = Entry(self.window, width=20, textvariable=self.parentFldrOutput)
+
+
         self.dropDown = ttk.Combobox(self.window, values=[1, 2, 3, 4], width=25)
+
+    
+    def getSelectedDir(self):
+        return self.selectedDir
 
 
     #openDirPath() -> open file browsing dialog when open path button is clicked
 
     def openDir(self):
-        self.selectedDir = filedialog.askdirectory()
+        self.askDir = filedialog.askdirectory()
+        #self.selectedDir = self.askDir
         #print("Selected directory is:", selectedDir)
-        self.outputStr = "The selected directory is: " + self.selectedDir
+        self.outputStr = "The selected directory is: " + self.askDir
         
         #self.textBlock = Text(self.window, height=1, width=120)
         self.textBlock.insert('1.0', self.outputStr)
@@ -42,32 +55,54 @@ class myApp():
         self.textBlock.insert('1.0', text)
         
     # main button - browse for directory path
-    def button(self):
-        mainButton = Button(self.window, text='Open Path', width=20, justify='center', command=self.updateDir)
+    def browseButton(self):
+        mainButton = Button(self.window, text='Browse Path', width=20, justify='center', command=self.updateDir)
         mainButton.place(x=175, y=30)
         #mainButton.place(x=140, y=70)
+    
+    def setSelectedDir(self):
+
+        self.selectedDir = self.askDir
+        print(self.selectedDir)
+
+    # button-click event to submit final path to self.selectedDir
+    def submitPathButton(self):
+
+        button1 = Button(self.window, text='Enter Path', width=20, command=self.setSelectedDir)
+        button1.place(x=175, y=110)
 
     def createParentFolder(self):
-        
         label1 = Label(self.window, text="Enter parent folder name:", justify="left")
-        label1.place(x=30, y=122.5)
-        parentButton = Entry(self.window, width=20)
-        parentButton.place(x=189, y=125)
+        label1.place(x=30, y=142.5)
 
+        self.parentFldrEntry.place(x=185, y=145)
+
+        enterParent = Button(self.window, text="Enter", command=self.getParentFolderName)
+        enterParent.place(x=320, y=140)
+        
+        # Print out the directory here
+
+    def getParentFolderName(self):
+        self.parentFldrOutput.get()
         
     def dropDownMenu(self):
         
         self.dropDown.set("How many sub-folders?")
-        self.dropDown.place(x=160, y=180)
+        self.dropDown.place(x=163, y=180)
 
     def startApp(self):
         self.window.mainloop()
-
+        print("\033[91mSESSION CLOSED\033[0m") # runs once self.window.mainloop() has been executed
+        time.sleep(0.7)
+        print("\033c", end="")
 
 if __name__ == "__main__":
     m = myApp()
-    m.button()
+    m.browseButton()
+    m.submitPathButton()
     m.createParentFolder()
+    #print("dir:", m.getSelectedDir())
+    m.getParentFolderName()
     m.dropDownMenu()
     m.startApp()
-    print("dir:", m.selectedDir)
+    
