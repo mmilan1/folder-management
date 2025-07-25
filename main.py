@@ -2,6 +2,8 @@
 # main.py - controls the backend of the file management program
 #
 
+# ! move instance variable and widget initializations to __init__()
+
 from tkinter import * 
 from tkinter import filedialog
 from tkinter import ttk
@@ -24,6 +26,7 @@ class myApp():
         self.parentFldrOutput = StringVar()
         self.parentFldrOutput.set("")
         self.parentFldrEntry = Entry(self.window, width=20, textvariable=self.parentFldrOutput)
+        self.fullPath = ""
 
 
         self.dropDown = ttk.Combobox(self.window, values=[1, 2, 3, 4], width=25)
@@ -71,7 +74,7 @@ class myApp():
         button1 = Button(self.window, text='Enter Path', width=20, command=self.setSelectedDir)
         button1.place(x=175, y=110)
 
-    def createParentFolder(self):
+    def createParentFolder(self): # TODO save parent folder entry to self.parentFldrOutput var
         label1 = Label(self.window, text="Enter parent folder name:", justify="left")
         label1.place(x=30, y=142.5)
 
@@ -83,18 +86,21 @@ class myApp():
         # Print out the directory here
 
     def getParentFolderName(self):
-        self.parentFldrOutput.get()
+        pFolder = self.parentFldrOutput.get()
+        print("This is the parent folder name:", pFolder)
+        self.fullPath = self.askDir + "/" + pFolder
+        print("Full path:", self.fullPath)
         
     def dropDownMenu(self):
         
         self.dropDown.set("How many sub-folders?")
         self.dropDown.place(x=163, y=180)
 
-    def startApp(self):
+    def startApp(self): # runs mainloop method
         self.window.mainloop()
-        print("\033[91mSESSION CLOSED\033[0m") # runs once self.window.mainloop() has been executed
-        time.sleep(0.7)
-        print("\033c", end="")
+        print("\n\033[91mCLEARING SCREEN...\033[0m") # runs once self.window.mainloop() has been executed
+        time.sleep(0.85)
+        print("\033c", end="") # clear terminal
 
 if __name__ == "__main__":
     m = myApp()
@@ -102,7 +108,6 @@ if __name__ == "__main__":
     m.submitPathButton()
     m.createParentFolder()
     #print("dir:", m.getSelectedDir())
-    m.getParentFolderName()
     m.dropDownMenu()
     m.startApp()
     
